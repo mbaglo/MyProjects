@@ -1,0 +1,15 @@
+# CDS Setup
+
+cd $HOME
+cat /classes/ee620/maieee/cds/.bashrc >> ~/.bashrc
+source ~/.bashrc
+mkdir cmpe630
+cd cmpe630
+cp -pf /classes/ee620/maieee/cds/.cdsinit .cdsinit
+cp -pf /classes/ee620/maieee/cds/.cdsenv .cdsenv
+cp -pf /classes/ee620/maieee/cds/cds.lib cds.lib
+mkdir PVS
+mkdir PVS/DRC 
+mkdir PVS/LVS
+
+

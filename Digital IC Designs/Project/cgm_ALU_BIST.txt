@@ -1,0 +1,84 @@
+module cgm_ALU_BIST (
+    input A0, A1, A2, A3, A4, A5, A6, A7,  // Inputs A[7:0]
+    input B0, B1, B2, B3, B4, B5, B6, B7,  // Inputs B[7:0]
+    input Sel,                              // Select signal (0: ADD, 1: MUL)
+    input C_in,                             // Carry-in for ADD
+    input Scan_in,                          // Scan-In for LFSR and SISR
+    input Clk,                              // Clock signal
+    input Reset,                            // Reset signal
+    input C0, C1, C2, C3,                   // Control signals
+    output S0, S1, S2, S3, S4, S5, S6, S7,  // Outputs S[15:0]
+    output S8, S9, S10, S11, S12, S13, S14, S15,
+    output Scan_out                         // SISR signature output
+);
+
+// Combine inputs into 8-bit vectors
+wire [7:0] A = {A7, A6, A5, A4, A3, A2, A1, A0};
+wire [7:0] B = {B7, B6, B5, B4, B3, B2, B1, B0};
+
+// LFSR: 16-bit Galois, right-shifting (MSB on left, LSB on right)
+reg [15:0] lfsr;  // LFSR register (bit 15: MSB, bit 0: LSB)
+wire lfsr_feedback = lfsr[15] ^ lfsr[13] ^ lfsr[12] ^ lfsr[10];  // XOR of taps: 15, 13, 12, 10
+
+// SISR: 16-bit Galois, right-shifting (MSB on left, LSB on right)
+reg [15:0] sisr;  // SISR register (bit 15: MSB, bit 0: LSB)
+wire [15:0] alu_out;
+wire sisr_input = ^alu_out;  // XOR of all 16 bits of ALU output
+wire sisr_feedback = sisr[15] ^ sisr[13] ^ sisr[12] ^ sisr[10];  // XOR of taps: 15, 13, 12, 10
+wire sisr_new_bit = sisr_feedback ^ (C2 ? sisr_input : Scan_in);  // XOR feedback with input bit or Scan_in
+
+// ALU operation
+wire [15:0] alu_add = A + B + C_in;  // 8-bit addition, extended to 16 bits
+wire [15:0] alu_mul = A * B;         // 8-bit multiplication, 16-bit result
+assign alu_out = Sel ? alu_mul : alu_add;  // Select between ADD and MUL
+
+// Outputs
+assign {S15, S14, S13, S12, S11, S10, S9, S8, S7, S6, S5, S4, S3, S2, S1, S0} = C0 ? alu_out : 16'b0;
+assign Scan_out = C3 ? sisr[15] : 1'b0;  // Output MSB of SISR when shifting out
+
+// LFSR Update
+always @(posedge Clk or posedge Reset) begin
+    if (Reset) begin
+        lfsr <= 16'b0;
+        sisr <= 16'b0;
+    end else begin
+        if (C0) begin  // Test mode
+            if (C1) begin  // Load LFSR seed
+                lfsr <= {lfsr[14:0], Scan_in};
+            end else begin  // Normal LFSR operation
+                // Right-shift: bits 15 to 1 shift to 14 to 0
+                // XOR feedback bit (lfsr[15]) with tapped positions (13, 12, 10)
+                lfsr[15] <= lfsr_feedback;  // New bit 15 (shifted from bit 14)
+                lfsr[14] <= lfsr[14];       // Bit 14 (already shifted)
+                lfsr[13] <= lfsr[13] ^ (lfsr[15] & 1'b1);  // XOR with feedback bit
+                lfsr[12] <= lfsr[12] ^ (lfsr[15] & 1'b1);  // XOR with feedback bit
+                lfsr[11] <= lfsr[11];       // Bit 11 (already shifted)
+                lfsr[10] <= lfsr[10] ^ (lfsr[15] & 1'b1);  // XOR with feedback bit
+                lfsr[9:1] <= lfsr[9:1];    // Bits 9 to 1 (already shifted)
+                lfsr[0] <= lfsr_feedback;   // New LSB (bit 0) is feedback
+            end
+
+            // SISR Update
+            if (C3) begin  // Shift mode (load zeros or shift out signature)
+                sisr <= {sisr[14:0], Scan_in};
+            end else if (C2) begin  // Capture mode
+                // Right-shift: bits 15 to 1 shift to 14 to 0
+                // XOR feedback bit (sisr[15]) with tapped positions (13, 12, 10)
+                sisr[15] <= sisr_feedback;  // New bit 15 (shifted from bit 14)
+                sisr[14] <= sisr[14];       // Bit 14 (already shifted)
+                sisr[13] <= sisr[13] ^ (sisr[15] & 1'b1);  // XOR with feedback bit
+                sisr[12] <= sisr[12] ^ (sisr[15] & 1'b1);  // XOR with feedback bit
+                sisr[11] <= sisr[11];       // Bit 11 (already shifted)
+                sisr[10] <= sisr[10] ^ (sisr[15] & 1'b1);  // XOR with feedback bit
+                sisr[9:1] <= sisr[9:1];    // Bits 9 to 1 (already shifted)
+                sisr[0] <= sisr_new_bit;    // New LSB (bit 0) is feedback XOR input bit
+            end
+        end
+    end
+end
+
+// Assign ALU inputs from LFSR when in test mode
+wire [7:0] alu_a = C0 ? lfsr[15:8] : A;  // A0-A7 from LFSR bits 15:8
+wire [7:0] alu_b = C0 ? lfsr[7:0] : B;   // B0-B7 from LFSR bits 7:0
+
+endmodule

@@ -1,0 +1,129 @@
+//Verilog HDL for "cgm", "cgm_ALU_BIST_TESTBENCH" "function"
+
+module cgm_ALU_BIST_TESTBENCH (
+    A0, A1, A2, A3, A4, A5, A6, A7,  // Inputs A[7:0]
+    B0, B1, B2, B3, B4, B5, B6, B7,  // Inputs B[7:0]
+    Sel,                              // Select signal
+    C_in,                             // Carry-in for ADD8
+    Scan_in,                          // Scan-In for LFSR and SISR
+    Clk,                              // Clock signal
+    Reset,                            // Reset signal
+    C0, C1, C2, C3,                   // Control signals
+    S0, S1, S2, S3, S4, S5, S6, S7,  // Outputs S[15:0]
+    S8, S9, S10, S11, S12, S13, S14, S15,
+    Scan_out                          // SISR signature output
+);
+
+// Declare the ports with correct directions
+output A0, A1, A2, A3, A4, A5, A6, A7;
+output B0, B1, B2, B3, B4, B5, B6, B7;
+output Sel;
+output C_in;
+output Scan_in;
+output Clk;
+output Reset;
+output C0, C1, C2, C3;
+input S0, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15;
+input Scan_out;
+
+// Wires for individual bits of A and B
+wire A0, A1, A2, A3, A4, A5, A6, A7;
+wire B0, B1, B2, B3, B4, B5, B6, B7;
+
+// Registers to drive inputs
+reg [7:0] A = 0;  // 8-bit input A
+reg [7:0] B = 0;  // 8-bit input B
+reg Sel;          // Select signal
+reg C_in;         // Carry-in
+reg Scan_in;      // Scan-In
+reg Clk;          // Clock
+reg Reset;        // Reset
+reg C0;           // Mode (normal vs. test)
+reg C1;           // Load seed into LFSR
+reg C2;           // Capture for SISR
+reg C3;           // Report for SISR
+
+// Assign the individual bits of A and B to the output ports
+assign {A7, A6, A5, A4, A3, A2, A1, A0} = A;
+assign {B7, B6, B5, B4, B3, B2, B1, B0} = B;
+
+// Combine the output bits into a 16-bit sum for easier monitoring
+wire [15:0] sum = {S15, S14, S13, S12, S11, S10, S9, S8,
+                   S7, S6, S5, S4, S3, S2, S1, S0};
+
+// Variables for test loop
+integer i;
+reg [15:0] signature;
+
+// Clock generation: 10 ns period (5 ns high, 5 ns low)
+initial begin
+    Clk = 0;
+    forever #5 Clk = ~Clk;
+end
+
+initial begin
+    // Initialize inputs
+    A = 8'b0;
+    B = 8'b0;
+    Sel = 0;
+    C_in = 0;
+    Scan_in = 0;
+    Reset = 0;
+    C0 = 0;
+    C1 = 0;
+    C2 = 0;
+    C3 = 0;
+
+    // Apply reset
+    #10;
+    Reset = 1;
+    #10;
+    Reset = 0;
+
+    // Phase 1: Load LFSR seed (0x3BB3 = 00111011_10110011)
+    C0 = 1;  // Test mode
+    C1 = 1;  // Load seed into LFSR
+    for (i = 0; i < 16; i = i + 1) begin
+        Scan_in = (16'h3BB3 >> (15 - i)) & 1'b1;  // Shift in MSB first
+        #10;
+    end
+    C1 = 0;
+
+    // Phase 2: Initialize SISR with all zeros
+    C3 = 1;  // Shift mode for SISR
+    for (i = 0; i < 16; i = i + 1) begin
+        Scan_in = 0;  // Load zeros
+        #10;
+    end
+    C3 = 0;
+
+    // Phase 3: Run BIST for 32 cycles
+    C2 = 1;  // Capture mode for SISR
+    for (i = 0; i < 32; i = i + 1) begin
+        if (i < 16)
+            Sel = 0;  // Addition for first 16 cycles
+        else
+            Sel = 1;  // Multiplication for next 16 cycles
+        C_in = 0;
+        #10;
+    end
+    C2 = 0;
+
+    // Phase 4: Shift out SISR signature
+    C3 = 1;  // Shift mode for SISR
+    signature = 16'b0;
+    for (i = 0; i < 16; i = i + 1) begin
+        signature = (signature << 1) | Scan_out;  // Capture signature MSB first
+        #10;
+    end
+    C3 = 0;
+
+    // Display the signature
+    $display("SISR Signature: %h", signature);
+
+    // End simulation
+    #10;
+    $finish;
+end
+
+endmodule

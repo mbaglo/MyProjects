@@ -1,0 +1,114 @@
+`timescale 1ns / 1ps
+
+module cgm_ALU_BIST_TESTBENCH;
+
+    // Inputs to cgm_ALU_BIST
+    reg [7:0] A;  // A0-A7
+    reg [7:0] B;  // B0-B7
+    reg Sel;
+    reg C_in;
+    reg Scan_in;
+    reg Clk;
+    reg Reset;
+    reg C0;
+    reg C1;
+    reg C2;
+    reg C3;
+
+    // Outputs from cgm_ALU_BIST
+    wire [15:0] S;  // S0-S15
+    wire Scan_out;
+
+    // Instantiate the Device Under Test (DUT)
+    cgm_ALU_BIST dut (
+        .A(A),
+        .B(B),
+        .Sel(Sel),
+        .C_in(C_in),
+        .Scan_in(Scan_in),
+        .Clk(Clk),
+        .Reset(Reset),
+        .C0(C0),
+        .C1(C1),
+        .C2(C2),
+        .C3(C3),
+        .S(S),
+        .Scan_out(Scan_out)
+    );
+
+    // Clock generation: 10 ns period (5 ns high, 5 ns low)
+    initial begin
+        Clk = 0;
+        forever #5 Clk = ~Clk;
+    end
+
+    // Test sequence
+    integer i;
+    reg [15:0] signature;
+
+    initial begin
+        // Initialize inputs
+        A = 8'b0;
+        B = 8'b0;
+        Sel = 0;
+        C_in = 0;
+        Scan_in = 0;
+        Reset = 0;
+        C0 = 0;
+        C1 = 0;
+        C2 = 0;
+        C3 = 0;
+
+        // Apply reset
+        #10;
+        Reset = 1;
+        #10;
+        Reset = 0;
+
+        // Phase 1: Load LFSR seed (0x3BB3 = 00111011_10110011)
+        C0 = 1;  // Test mode
+        C1 = 1;  // Load seed into LFSR
+        for (i = 0; i < 16; i = i + 1) begin
+            Scan_in = (16'h3BB3 >> (15 - i)) & 1'b1;  // Shift in MSB first
+            #10;
+        end
+        C1 = 0;
+
+        // Phase 2: Initialize SISR with all zeros
+        C3 = 1;  // Shift mode for SISR
+        for (i = 0; i < 16; i = i + 1) begin
+            Scan_in = 0;  // Load zeros
+            #10;
+        end
+        C3 = 0;
+
+        // Phase 3: Run BIST for 32 cycles
+        C2 = 1;  // Capture mode for SISR
+        for (i = 0; i < 32; i = i + 1) begin
+            if (i < 16)
+                Sel = 0;  // Addition for first 16 cycles
+            else
+                Sel = 1;  // Multiplication for next 16 cycles
+            C_in = 0;
+            #10;
+        end
+        C2 = 0;
+
+        // Phase 4: Shift out SISR signature
+        C3 = 1;  // Shift mode for SISR
+        signature = 16'b0;
+        for (i = 0; i < 16; i = i + 1) begin
+            signature = (signature << 1) | Scan_out;  // Capture signature MSB first
+            #10;
+        end
+        C3 = 0;
+
+        // Display the signature
+        $display("SISR Signature: %h", signature);
+
+        // End simulation
+        #10;
+        $finish;
+    end
+
+endmodule
