@@ -1,0 +1,23 @@
+[
+  {
+    "epoch": 1,
+    "val_loss": 3.390637144129327,
+    "test_loss": 3.5168860313740185,
+    "checkpoint_epoch_field": 2,
+    "resume_offset": 0
+  },
+  {
+    "epoch": 1,
+    "val_loss": 3.390637144129327,
+    "test_loss": 3.5168860313740185,
+    "checkpoint_epoch_field": 2,
+    "resume_offset": 0
+  },
+  {
+    "epoch": 1,
+    "val_loss": 3.390637144129327,
+    "test_loss": 3.5168860313740185,
+    "checkpoint_epoch_field": 2,
+    "resume_offset": 0
+  }
+]
