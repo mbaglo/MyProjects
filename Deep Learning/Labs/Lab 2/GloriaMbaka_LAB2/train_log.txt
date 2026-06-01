@@ -1,0 +1,366 @@
+ROOT: /content/drive/MyDrive/Colab Notebooks/CMPE-679-Labs/GloriaMbaka_LAB2
+DEVICE: cuda
+TOKENIZER_PATH: /content/drive/MyDrive/Colab Notebooks/CMPE-679-Labs/GloriaMbaka_LAB2/tokenizer/my_trained_tokenizer.json
+TOKENIZED_DIR: /content/drive/MyDrive/Colab Notebooks/CMPE-679-Labs/GloriaMbaka_LAB2/tokenized_cache
+USE_AMP: False
+USE_LR_SCHEDULER: True
+EPOCHS: 5
+BATCH_SIZE: 64
+GRAD_ACCUM_STEPS: 8
+EFFECTIVE_BATCH_SIZE: 512
+TRAIN_CHUNK_SIZE: 500000
+WARMUP_STEPS: 8000
+BASE_LR: 0.0005
+SHUFFLE_CHUNKS: False
+CHUNK_SHUFFLE_SEED: 42
+Loading tokenized dataset from disk...
+Train examples: 4508785
+Validation examples: 3000
+Test examples: 3003
+Loaded full checkpoint from: /content/drive/MyDrive/Colab Notebooks/CMPE-679-Labs/GloriaMbaka_LAB2/checkpoints/lab2_en_de_latest.pt
+Restored model / optimizer / scheduler / scaler state.
+Epoch to resume: 4
+Resume offset within epoch: 4000000
+Samples trained so far: 4000000
+Current LR: 2.311077e-04
+Checkpoint batch_size: 64
+Checkpoint effective_batch_size: 512
+Completed chunks in current epoch: 8
+Smoke test loss: 3.215855360031128
+
+========== EN→DE Epoch 4/5 ==========
+Resuming from training example offset 4000000
+Epoch chunk progress: completed 8/10 | remaining 2
+Training chunk 1/2 (global 9/10) | 4000000:4500000 / 4508785
+Batch 0 | LR 2.311077e-04 | Loss 3.2158 | AccumStep 1/8
+Batch 100 | LR 2.310698e-04 | Loss 2.7983 | AccumStep 5/8
+Batch 200 | LR 2.310287e-04 | Loss 3.0148 | AccumStep 1/8
+Batch 300 | LR 2.309909e-04 | Loss 2.7927 | AccumStep 5/8
+Batch 400 | LR 2.309499e-04 | Loss 2.7029 | AccumStep 1/8
+Batch 500 | LR 2.309120e-04 | Loss 2.8096 | AccumStep 5/8
+Batch 600 | LR 2.308711e-04 | Loss 2.8833 | AccumStep 1/8
+Batch 700 | LR 2.308333e-04 | Loss 3.0683 | AccumStep 5/8
+Batch 800 | LR 2.307923e-04 | Loss 3.2064 | AccumStep 1/8
+Batch 900 | LR 2.307546e-04 | Loss 3.2396 | AccumStep 5/8
+Batch 1000 | LR 2.307137e-04 | Loss 2.9109 | AccumStep 1/8
+Batch 1100 | LR 2.306760e-04 | Loss 3.2071 | AccumStep 5/8
+Batch 1200 | LR 2.306352e-04 | Loss 3.0208 | AccumStep 1/8
+Batch 1300 | LR 2.305975e-04 | Loss 2.8459 | AccumStep 5/8
+Batch 1400 | LR 2.305567e-04 | Loss 2.8638 | AccumStep 1/8
+Batch 1500 | LR 2.305190e-04 | Loss 2.9496 | AccumStep 5/8
+Batch 1600 | LR 2.304783e-04 | Loss 2.9686 | AccumStep 1/8
+Batch 1700 | LR 2.304407e-04 | Loss 2.7595 | AccumStep 5/8
+Batch 1800 | LR 2.304000e-04 | Loss 2.8501 | AccumStep 1/8
+Batch 1900 | LR 2.303624e-04 | Loss 2.6026 | AccumStep 5/8
+Batch 2000 | LR 2.303217e-04 | Loss 2.7820 | AccumStep 1/8
+Batch 2100 | LR 2.302842e-04 | Loss 3.0185 | AccumStep 5/8
+Batch 2200 | LR 2.302436e-04 | Loss 2.8450 | AccumStep 1/8
+Batch 2300 | LR 2.302061e-04 | Loss 2.9125 | AccumStep 5/8
+Batch 2400 | LR 2.301655e-04 | Loss 2.7560 | AccumStep 1/8
+Batch 2500 | LR 2.301281e-04 | Loss 3.0215 | AccumStep 5/8
+Batch 2600 | LR 2.300875e-04 | Loss 2.8633 | AccumStep 1/8
+Batch 2700 | LR 2.300501e-04 | Loss 2.9433 | AccumStep 5/8
+Batch 2800 | LR 2.300096e-04 | Loss 2.9624 | AccumStep 1/8
+Batch 2900 | LR 2.299722e-04 | Loss 2.6768 | AccumStep 5/8
+Batch 3000 | LR 2.299317e-04 | Loss 2.7637 | AccumStep 1/8
+Batch 3100 | LR 2.298944e-04 | Loss 2.7491 | AccumStep 5/8
+Batch 3200 | LR 2.298540e-04 | Loss 2.8203 | AccumStep 1/8
+Batch 3300 | LR 2.298167e-04 | Loss 2.9241 | AccumStep 5/8
+Batch 3400 | LR 2.297763e-04 | Loss 2.9492 | AccumStep 1/8
+Batch 3500 | LR 2.297390e-04 | Loss 2.7862 | AccumStep 5/8
+Batch 3600 | LR 2.296987e-04 | Loss 2.5943 | AccumStep 1/8
+Batch 3700 | LR 2.296615e-04 | Loss 2.9098 | AccumStep 5/8
+Batch 3800 | LR 2.296212e-04 | Loss 3.0323 | AccumStep 1/8
+Batch 3900 | LR 2.295840e-04 | Loss 2.6378 | AccumStep 5/8
+Batch 4000 | LR 2.295437e-04 | Loss 2.9079 | AccumStep 1/8
+Batch 4100 | LR 2.295066e-04 | Loss 2.6800 | AccumStep 5/8
+Batch 4200 | LR 2.294664e-04 | Loss 2.9496 | AccumStep 1/8
+Batch 4300 | LR 2.294293e-04 | Loss 2.8258 | AccumStep 5/8
+Batch 4400 | LR 2.293891e-04 | Loss 2.8037 | AccumStep 1/8
+Batch 4500 | LR 2.293520e-04 | Loss 3.0806 | AccumStep 5/8
+Batch 4600 | LR 2.293119e-04 | Loss 2.9275 | AccumStep 1/8
+Batch 4700 | LR 2.292748e-04 | Loss 2.7662 | AccumStep 5/8
+Batch 4800 | LR 2.292347e-04 | Loss 2.9071 | AccumStep 1/8
+Batch 4900 | LR 2.291977e-04 | Loss 2.7707 | AccumStep 5/8
+Batch 5000 | LR 2.291577e-04 | Loss 2.7599 | AccumStep 1/8
+Batch 5100 | LR 2.291207e-04 | Loss 2.7725 | AccumStep 5/8
+Batch 5200 | LR 2.290807e-04 | Loss 2.8733 | AccumStep 1/8
+Batch 5300 | LR 2.290438e-04 | Loss 2.5809 | AccumStep 5/8
+Batch 5400 | LR 2.290038e-04 | Loss 2.7705 | AccumStep 1/8
+Batch 5500 | LR 2.289669e-04 | Loss 2.8572 | AccumStep 5/8
+Batch 5600 | LR 2.289270e-04 | Loss 2.6128 | AccumStep 1/8
+Batch 5700 | LR 2.288901e-04 | Loss 2.4611 | AccumStep 5/8
+Batch 5800 | LR 2.288502e-04 | Loss 2.6632 | AccumStep 1/8
+Batch 5900 | LR 2.288134e-04 | Loss 2.6321 | AccumStep 5/8
+Batch 6000 | LR 2.287736e-04 | Loss 2.6891 | AccumStep 1/8
+Batch 6100 | LR 2.287368e-04 | Loss 2.8163 | AccumStep 5/8
+Batch 6200 | LR 2.286970e-04 | Loss 2.6820 | AccumStep 1/8
+Batch 6300 | LR 2.286602e-04 | Loss 3.0462 | AccumStep 5/8
+Batch 6400 | LR 2.286205e-04 | Loss 2.8065 | AccumStep 1/8
+Batch 6500 | LR 2.285838e-04 | Loss 2.7041 | AccumStep 5/8
+Batch 6600 | LR 2.285440e-04 | Loss 2.7393 | AccumStep 1/8
+Batch 6700 | LR 2.285074e-04 | Loss 2.7796 | AccumStep 5/8
+Batch 6800 | LR 2.284677e-04 | Loss 2.8454 | AccumStep 1/8
+Batch 6900 | LR 2.284310e-04 | Loss 2.9968 | AccumStep 5/8
+Batch 7000 | LR 2.283914e-04 | Loss 2.4904 | AccumStep 1/8
+Batch 7100 | LR 2.283548e-04 | Loss 2.7184 | AccumStep 5/8
+Batch 7200 | LR 2.283152e-04 | Loss 2.6092 | AccumStep 1/8
+Batch 7300 | LR 2.282786e-04 | Loss 2.6603 | AccumStep 5/8
+Batch 7400 | LR 2.282390e-04 | Loss 2.7675 | AccumStep 1/8
+Batch 7500 | LR 2.282025e-04 | Loss 2.7306 | AccumStep 5/8
+Batch 7600 | LR 2.281630e-04 | Loss 2.8725 | AccumStep 1/8
+Batch 7700 | LR 2.281265e-04 | Loss 2.7664 | AccumStep 5/8
+Batch 7800 | LR 2.280870e-04 | Loss 3.0269 | AccumStep 1/8
+  chunk_loss = 2.8526 | lr = 2.280809e-04 | batch_size = 64 | effective_batch_size = 512 | optimizer_steps = 977
+Training chunk 2/2 (global 10/10) | 4500000:4508785 / 4508785
+Batch 0 | LR 2.280809e-04 | Loss 2.1764 | AccumStep 1/8
+Batch 100 | LR 2.280445e-04 | Loss 2.3066 | AccumStep 5/8
+  chunk_loss = 2.2927 | lr = 2.280263e-04 | batch_size = 64 | effective_batch_size = 512 | optimizer_steps = 18
+Saved new best checkpoint to: /content/drive/MyDrive/Colab Notebooks/CMPE-679-Labs/GloriaMbaka_LAB2/checkpoints/lab2_en_de_best.pt
+Saved best model .pth to: /content/drive/MyDrive/Colab Notebooks/CMPE-679-Labs/GloriaMbaka_LAB2/transformer_en_de_best.pth
+[EN→DE] Epoch 4/5 | train 2.5727 | val 2.6733 | test 2.7165 | lr 2.280263e-04 | batch_size 64 | effective_batch_size 512
+
+========== EN→DE Epoch 5/5 ==========
+Epoch chunk progress: completed 0/10 | remaining 10
+Training chunk 1/10 (global 1/10) | 0:500000 / 4508785
+Batch 0 | LR 2.280263e-04 | Loss 2.4509 | AccumStep 1/8
+Batch 100 | LR 2.279899e-04 | Loss 2.3630 | AccumStep 5/8
+Batch 200 | LR 2.279504e-04 | Loss 2.1858 | AccumStep 1/8
+Batch 300 | LR 2.279140e-04 | Loss 2.3633 | AccumStep 5/8
+Batch 400 | LR 2.278747e-04 | Loss 2.1184 | AccumStep 1/8
+Batch 500 | LR 2.278383e-04 | Loss 2.1272 | AccumStep 5/8
+Batch 600 | LR 2.277990e-04 | Loss 1.9832 | AccumStep 1/8
+Batch 700 | LR 2.277627e-04 | Loss 2.0902 | AccumStep 5/8
+Batch 800 | LR 2.277234e-04 | Loss 2.1372 | AccumStep 1/8
+Batch 900 | LR 2.276871e-04 | Loss 1.9717 | AccumStep 5/8
+Batch 1000 | LR 2.276478e-04 | Loss 2.0729 | AccumStep 1/8
+Batch 1100 | LR 2.276116e-04 | Loss 2.1030 | AccumStep 5/8
+Batch 1200 | LR 2.275723e-04 | Loss 1.9832 | AccumStep 1/8
+Batch 1300 | LR 2.275361e-04 | Loss 2.1376 | AccumStep 5/8
+Batch 1400 | LR 2.274970e-04 | Loss 2.0111 | AccumStep 1/8
+Batch 1500 | LR 2.274608e-04 | Loss 2.1901 | AccumStep 5/8
+Batch 1600 | LR 2.274216e-04 | Loss 2.0893 | AccumStep 1/8
+Batch 1700 | LR 2.273855e-04 | Loss 2.3286 | AccumStep 5/8
+Batch 1800 | LR 2.273464e-04 | Loss 2.2535 | AccumStep 1/8
+Batch 1900 | LR 2.273103e-04 | Loss 2.0352 | AccumStep 5/8
+Batch 2000 | LR 2.272712e-04 | Loss 2.0820 | AccumStep 1/8
+Batch 2100 | LR 2.272352e-04 | Loss 2.1151 | AccumStep 5/8
+Batch 2200 | LR 2.271961e-04 | Loss 2.0671 | AccumStep 1/8
+Batch 2300 | LR 2.271601e-04 | Loss 1.8846 | AccumStep 5/8
+Batch 2400 | LR 2.271211e-04 | Loss 1.9257 | AccumStep 1/8
+Batch 2500 | LR 2.270851e-04 | Loss 1.9368 | AccumStep 5/8
+Batch 2600 | LR 2.270462e-04 | Loss 1.8874 | AccumStep 1/8
+Batch 2700 | LR 2.270102e-04 | Loss 2.0471 | AccumStep 5/8
+Batch 2800 | LR 2.269713e-04 | Loss 1.9701 | AccumStep 1/8
+Batch 2900 | LR 2.269354e-04 | Loss 2.0435 | AccumStep 5/8
+Batch 3000 | LR 2.268965e-04 | Loss 2.1269 | AccumStep 1/8
+Batch 3100 | LR 2.268606e-04 | Loss 2.1650 | AccumStep 5/8
+Batch 3200 | LR 2.268218e-04 | Loss 1.9861 | AccumStep 1/8
+Batch 3300 | LR 2.267859e-04 | Loss 1.8962 | AccumStep 5/8
+Batch 3400 | LR 2.267471e-04 | Loss 1.8517 | AccumStep 1/8
+Batch 3500 | LR 2.267113e-04 | Loss 2.0264 | AccumStep 5/8
+Batch 3600 | LR 2.266726e-04 | Loss 2.0864 | AccumStep 1/8
+Batch 3700 | LR 2.266368e-04 | Loss 2.0300 | AccumStep 5/8
+Batch 3800 | LR 2.265981e-04 | Loss 2.1769 | AccumStep 1/8
+Batch 3900 | LR 2.265623e-04 | Loss 1.9379 | AccumStep 5/8
+Batch 4000 | LR 2.265236e-04 | Loss 2.1935 | AccumStep 1/8
+Batch 4100 | LR 2.264879e-04 | Loss 2.0670 | AccumStep 5/8
+Batch 4200 | LR 2.264493e-04 | Loss 2.1674 | AccumStep 1/8
+Batch 4300 | LR 2.264136e-04 | Loss 1.9759 | AccumStep 5/8
+Batch 4400 | LR 2.263750e-04 | Loss 1.9862 | AccumStep 1/8
+Batch 4500 | LR 2.263394e-04 | Loss 2.1148 | AccumStep 5/8
+Batch 4600 | LR 2.263008e-04 | Loss 2.0258 | AccumStep 1/8
+Batch 4700 | LR 2.262652e-04 | Loss 1.9559 | AccumStep 5/8
+Batch 4800 | LR 2.262267e-04 | Loss 2.0982 | AccumStep 1/8
+Batch 4900 | LR 2.261911e-04 | Loss 1.9694 | AccumStep 5/8
+Batch 5000 | LR 2.261526e-04 | Loss 1.8172 | AccumStep 1/8
+Batch 5100 | LR 2.261171e-04 | Loss 2.0477 | AccumStep 5/8
+Batch 5200 | LR 2.260786e-04 | Loss 2.0076 | AccumStep 1/8
+Batch 5300 | LR 2.260431e-04 | Loss 2.0598 | AccumStep 5/8
+Batch 5400 | LR 2.260047e-04 | Loss 2.1572 | AccumStep 1/8
+Batch 5500 | LR 2.259692e-04 | Loss 2.0570 | AccumStep 5/8
+Batch 5600 | LR 2.259308e-04 | Loss 1.7569 | AccumStep 1/8
+Batch 5700 | LR 2.258954e-04 | Loss 2.0481 | AccumStep 5/8
+Batch 5800 | LR 2.258571e-04 | Loss 2.2114 | AccumStep 1/8
+Batch 5900 | LR 2.258217e-04 | Loss 1.9612 | AccumStep 5/8
+Batch 6000 | LR 2.257834e-04 | Loss 2.0903 | AccumStep 1/8
+Batch 6100 | LR 2.257480e-04 | Loss 2.2384 | AccumStep 5/8
+Batch 6200 | LR 2.257097e-04 | Loss 1.9291 | AccumStep 1/8
+Batch 6300 | LR 2.256744e-04 | Loss 1.9825 | AccumStep 5/8
+Batch 6400 | LR 2.256362e-04 | Loss 2.0912 | AccumStep 1/8
+Batch 6500 | LR 2.256009e-04 | Loss 1.9686 | AccumStep 5/8
+Batch 6600 | LR 2.255627e-04 | Loss 2.0894 | AccumStep 1/8
+Batch 6700 | LR 2.255274e-04 | Loss 2.1994 | AccumStep 5/8
+Batch 6800 | LR 2.254893e-04 | Loss 1.8401 | AccumStep 1/8
+Batch 6900 | LR 2.254541e-04 | Loss 1.8735 | AccumStep 5/8
+Batch 7000 | LR 2.254159e-04 | Loss 1.8960 | AccumStep 1/8
+Batch 7100 | LR 2.253808e-04 | Loss 2.0530 | AccumStep 5/8
+Batch 7200 | LR 2.253427e-04 | Loss 2.1445 | AccumStep 1/8
+Batch 7300 | LR 2.253075e-04 | Loss 1.9388 | AccumStep 5/8
+Batch 7400 | LR 2.252695e-04 | Loss 2.1269 | AccumStep 1/8
+Batch 7500 | LR 2.252344e-04 | Loss 1.8799 | AccumStep 5/8
+Batch 7600 | LR 2.251963e-04 | Loss 2.0604 | AccumStep 1/8
+Batch 7700 | LR 2.251613e-04 | Loss 1.8716 | AccumStep 5/8
+Batch 7800 | LR 2.251233e-04 | Loss 2.1482 | AccumStep 1/8
+  chunk_loss = 2.0644 | lr = 2.251175e-04 | batch_size = 64 | effective_batch_size = 512 | optimizer_steps = 977
+Training chunk 2/10 (global 2/10) | 500000:1000000 / 4508785
+Batch 0 | LR 2.251175e-04 | Loss 1.8114 | AccumStep 1/8
+Batch 100 | LR 2.250824e-04 | Loss 1.9314 | AccumStep 5/8
+Batch 200 | LR 2.250445e-04 | Loss 1.9229 | AccumStep 1/8
+Batch 300 | LR 2.250095e-04 | Loss 1.7380 | AccumStep 5/8
+Batch 400 | LR 2.249716e-04 | Loss 1.8070 | AccumStep 1/8
+Batch 500 | LR 2.249366e-04 | Loss 2.0087 | AccumStep 5/8
+Batch 600 | LR 2.248987e-04 | Loss 1.9328 | AccumStep 1/8
+Batch 700 | LR 2.248638e-04 | Loss 1.8743 | AccumStep 5/8
+Batch 800 | LR 2.248260e-04 | Loss 1.8490 | AccumStep 1/8
+Batch 900 | LR 2.247911e-04 | Loss 1.8671 | AccumStep 5/8
+Batch 1000 | LR 2.247533e-04 | Loss 1.8445 | AccumStep 1/8
+Batch 1100 | LR 2.247184e-04 | Loss 1.7576 | AccumStep 5/8
+Batch 1200 | LR 2.246806e-04 | Loss 1.8879 | AccumStep 1/8
+Batch 1300 | LR 2.246458e-04 | Loss 1.7732 | AccumStep 5/8
+Batch 1400 | LR 2.246081e-04 | Loss 1.6734 | AccumStep 1/8
+Batch 1500 | LR 2.245733e-04 | Loss 1.7958 | AccumStep 5/8
+Batch 1600 | LR 2.245356e-04 | Loss 1.7717 | AccumStep 1/8
+Batch 1700 | LR 2.245008e-04 | Loss 1.6645 | AccumStep 5/8
+Batch 1800 | LR 2.244632e-04 | Loss 1.6596 | AccumStep 1/8
+Batch 1900 | LR 2.244285e-04 | Loss 1.6215 | AccumStep 5/8
+Batch 2000 | LR 2.243908e-04 | Loss 1.8957 | AccumStep 1/8
+Batch 2100 | LR 2.243561e-04 | Loss 1.6606 | AccumStep 5/8
+Batch 2200 | LR 2.243186e-04 | Loss 1.8707 | AccumStep 1/8
+Batch 2300 | LR 2.242839e-04 | Loss 1.7556 | AccumStep 5/8
+Batch 2400 | LR 2.242464e-04 | Loss 1.9236 | AccumStep 1/8
+Batch 2500 | LR 2.242117e-04 | Loss 1.9086 | AccumStep 5/8
+Batch 2600 | LR 2.241742e-04 | Loss 1.9373 | AccumStep 1/8
+Batch 2700 | LR 2.241396e-04 | Loss 1.7232 | AccumStep 5/8
+Batch 2800 | LR 2.241022e-04 | Loss 1.7397 | AccumStep 1/8
+Batch 2900 | LR 2.240676e-04 | Loss 1.7679 | AccumStep 5/8
+Batch 3000 | LR 2.240302e-04 | Loss 1.8247 | AccumStep 1/8
+Batch 3100 | LR 2.239956e-04 | Loss 1.6853 | AccumStep 5/8
+Batch 3200 | LR 2.239582e-04 | Loss 1.9081 | AccumStep 1/8
+Batch 3300 | LR 2.239237e-04 | Loss 2.0071 | AccumStep 5/8
+Batch 3400 | LR 2.238864e-04 | Loss 1.9174 | AccumStep 1/8
+Batch 3500 | LR 2.238519e-04 | Loss 1.8976 | AccumStep 5/8
+Batch 3600 | LR 2.238146e-04 | Loss 1.7589 | AccumStep 1/8
+Batch 3700 | LR 2.237802e-04 | Loss 1.9066 | AccumStep 5/8
+Batch 3800 | LR 2.237429e-04 | Loss 1.6530 | AccumStep 1/8
+Batch 3900 | LR 2.237085e-04 | Loss 1.8319 | AccumStep 5/8
+Batch 4000 | LR 2.236712e-04 | Loss 1.6165 | AccumStep 1/8
+Batch 4100 | LR 2.236369e-04 | Loss 1.8617 | AccumStep 5/8
+Batch 4200 | LR 2.235996e-04 | Loss 1.7066 | AccumStep 1/8
+Batch 4300 | LR 2.235653e-04 | Loss 1.6802 | AccumStep 5/8
+Batch 4400 | LR 2.235281e-04 | Loss 1.9047 | AccumStep 1/8
+Batch 4500 | LR 2.234938e-04 | Loss 1.8914 | AccumStep 5/8
+Batch 4600 | LR 2.234567e-04 | Loss 1.7743 | AccumStep 1/8
+Batch 4700 | LR 2.234224e-04 | Loss 1.6502 | AccumStep 5/8
+Batch 4800 | LR 2.233853e-04 | Loss 1.7697 | AccumStep 1/8
+Batch 4900 | LR 2.233511e-04 | Loss 1.6628 | AccumStep 5/8
+Batch 5000 | LR 2.233140e-04 | Loss 1.9650 | AccumStep 1/8
+Batch 5100 | LR 2.232798e-04 | Loss 1.6738 | AccumStep 5/8
+Batch 5200 | LR 2.232428e-04 | Loss 1.5413 | AccumStep 1/8
+Batch 5300 | LR 2.232086e-04 | Loss 1.7581 | AccumStep 5/8
+Batch 5400 | LR 2.231716e-04 | Loss 1.8832 | AccumStep 1/8
+Batch 5500 | LR 2.231375e-04 | Loss 1.6485 | AccumStep 5/8
+Batch 5600 | LR 2.231005e-04 | Loss 1.6480 | AccumStep 1/8
+Batch 5700 | LR 2.230664e-04 | Loss 1.8774 | AccumStep 5/8
+Batch 5800 | LR 2.230295e-04 | Loss 1.8194 | AccumStep 1/8
+Batch 5900 | LR 2.229954e-04 | Loss 1.6741 | AccumStep 5/8
+Batch 6000 | LR 2.229585e-04 | Loss 1.7551 | AccumStep 1/8
+Batch 6100 | LR 2.229244e-04 | Loss 1.8694 | AccumStep 5/8
+Batch 6200 | LR 2.228876e-04 | Loss 1.9077 | AccumStep 1/8
+Batch 6300 | LR 2.228536e-04 | Loss 1.8348 | AccumStep 5/8
+Batch 6400 | LR 2.228168e-04 | Loss 1.6731 | AccumStep 1/8
+Batch 6500 | LR 2.227828e-04 | Loss 1.8682 | AccumStep 5/8
+Batch 6600 | LR 2.227460e-04 | Loss 1.8437 | AccumStep 1/8
+Batch 6700 | LR 2.227120e-04 | Loss 1.8719 | AccumStep 5/8
+Batch 6800 | LR 2.226753e-04 | Loss 1.8665 | AccumStep 1/8
+Batch 6900 | LR 2.226414e-04 | Loss 1.8415 | AccumStep 5/8
+Batch 7000 | LR 2.226047e-04 | Loss 1.8320 | AccumStep 1/8
+Batch 7100 | LR 2.225708e-04 | Loss 1.6481 | AccumStep 5/8
+Batch 7200 | LR 2.225341e-04 | Loss 1.7853 | AccumStep 1/8
+Batch 7300 | LR 2.225003e-04 | Loss 1.6427 | AccumStep 5/8
+Batch 7400 | LR 2.224636e-04 | Loss 1.8987 | AccumStep 1/8
+Batch 7500 | LR 2.224298e-04 | Loss 1.8546 | AccumStep 5/8
+Batch 7600 | LR 2.223932e-04 | Loss 1.7113 | AccumStep 1/8
+Batch 7700 | LR 2.223594e-04 | Loss 1.7683 | AccumStep 5/8
+Batch 7800 | LR 2.223228e-04 | Loss 2.0050 | AccumStep 1/8
+  chunk_loss = 1.7990 | lr = 2.223172e-04 | batch_size = 64 | effective_batch_size = 512 | optimizer_steps = 977
+Training chunk 3/10 (global 3/10) | 1000000:1500000 / 4508785
+Batch 0 | LR 2.223172e-04 | Loss 1.5593 | AccumStep 1/8
+Batch 100 | LR 2.222834e-04 | Loss 1.8083 | AccumStep 5/8
+Batch 200 | LR 2.222469e-04 | Loss 1.4928 | AccumStep 1/8
+Batch 300 | LR 2.222132e-04 | Loss 1.6454 | AccumStep 5/8
+Batch 400 | LR 2.221767e-04 | Loss 1.5192 | AccumStep 1/8
+Batch 500 | LR 2.221430e-04 | Loss 1.6792 | AccumStep 5/8
+Batch 600 | LR 2.221065e-04 | Loss 1.7141 | AccumStep 1/8
+Batch 700 | LR 2.220729e-04 | Loss 1.6008 | AccumStep 5/8
+Batch 800 | LR 2.220364e-04 | Loss 1.6201 | AccumStep 1/8
+Batch 900 | LR 2.220028e-04 | Loss 1.8666 | AccumStep 5/8
+Batch 1000 | LR 2.219664e-04 | Loss 1.7244 | AccumStep 1/8
+Batch 1100 | LR 2.219328e-04 | Loss 1.5093 | AccumStep 5/8
+Batch 1200 | LR 2.218964e-04 | Loss 1.7222 | AccumStep 1/8
+Batch 1300 | LR 2.218629e-04 | Loss 1.6320 | AccumStep 5/8
+Batch 1400 | LR 2.218266e-04 | Loss 1.5654 | AccumStep 1/8
+Batch 1500 | LR 2.217930e-04 | Loss 1.7348 | AccumStep 5/8
+Batch 1600 | LR 2.217567e-04 | Loss 1.9070 | AccumStep 1/8
+Batch 1700 | LR 2.217232e-04 | Loss 1.5885 | AccumStep 5/8
+Batch 1800 | LR 2.216870e-04 | Loss 1.4981 | AccumStep 1/8
+Batch 1900 | LR 2.216535e-04 | Loss 1.6173 | AccumStep 5/8
+Batch 2000 | LR 2.216173e-04 | Loss 1.5268 | AccumStep 1/8
+Batch 2100 | LR 2.215838e-04 | Loss 1.6566 | AccumStep 5/8
+Batch 2200 | LR 2.215476e-04 | Loss 1.7560 | AccumStep 1/8
+Batch 2300 | LR 2.215142e-04 | Loss 1.7389 | AccumStep 5/8
+Batch 2400 | LR 2.214781e-04 | Loss 1.6090 | AccumStep 1/8
+Batch 2500 | LR 2.214447e-04 | Loss 1.6697 | AccumStep 5/8
+Batch 2600 | LR 2.214086e-04 | Loss 1.7023 | AccumStep 1/8
+Batch 2700 | LR 2.213752e-04 | Loss 1.5550 | AccumStep 5/8
+Batch 2800 | LR 2.213392e-04 | Loss 1.6654 | AccumStep 1/8
+Batch 2900 | LR 2.213058e-04 | Loss 1.7898 | AccumStep 5/8
+Batch 3000 | LR 2.212698e-04 | Loss 1.7703 | AccumStep 1/8
+Batch 3100 | LR 2.212365e-04 | Loss 1.6548 | AccumStep 5/8
+Batch 3200 | LR 2.212005e-04 | Loss 1.6487 | AccumStep 1/8
+Batch 3300 | LR 2.211672e-04 | Loss 1.6635 | AccumStep 5/8
+Batch 3400 | LR 2.211312e-04 | Loss 1.6404 | AccumStep 1/8
+Batch 3500 | LR 2.210980e-04 | Loss 1.6408 | AccumStep 5/8
+Batch 3600 | LR 2.210621e-04 | Loss 1.5264 | AccumStep 1/8
+Batch 3700 | LR 2.210289e-04 | Loss 1.7342 | AccumStep 5/8
+Batch 3800 | LR 2.209930e-04 | Loss 1.6305 | AccumStep 1/8
+Batch 3900 | LR 2.209598e-04 | Loss 1.8284 | AccumStep 5/8
+Batch 4000 | LR 2.209239e-04 | Loss 1.6363 | AccumStep 1/8
+Batch 4100 | LR 2.208908e-04 | Loss 1.5227 | AccumStep 5/8
+Batch 4200 | LR 2.208550e-04 | Loss 1.7555 | AccumStep 1/8
+Batch 4300 | LR 2.208219e-04 | Loss 1.6698 | AccumStep 5/8
+Batch 4400 | LR 2.207860e-04 | Loss 1.7368 | AccumStep 1/8
+Batch 4500 | LR 2.207530e-04 | Loss 1.5082 | AccumStep 5/8
+Batch 4600 | LR 2.207172e-04 | Loss 1.5588 | AccumStep 1/8
+Batch 4700 | LR 2.206842e-04 | Loss 1.6530 | AccumStep 5/8
+Batch 4800 | LR 2.206484e-04 | Loss 1.5371 | AccumStep 1/8
+Batch 4900 | LR 2.206154e-04 | Loss 1.6478 | AccumStep 5/8
+Batch 5000 | LR 2.205797e-04 | Loss 1.6168 | AccumStep 1/8
+Batch 5100 | LR 2.205467e-04 | Loss 1.8392 | AccumStep 5/8
+Batch 5200 | LR 2.205110e-04 | Loss 1.6462 | AccumStep 1/8
+Batch 5300 | LR 2.204781e-04 | Loss 1.6907 | AccumStep 5/8
+Batch 5400 | LR 2.204424e-04 | Loss 1.7701 | AccumStep 1/8
+Batch 5500 | LR 2.204095e-04 | Loss 1.8223 | AccumStep 5/8
+Batch 5600 | LR 2.203739e-04 | Loss 1.5899 | AccumStep 1/8
+Batch 5700 | LR 2.203410e-04 | Loss 1.7082 | AccumStep 5/8
+Batch 5800 | LR 2.203055e-04 | Loss 1.6900 | AccumStep 1/8
+Batch 5900 | LR 2.202726e-04 | Loss 1.6794 | AccumStep 5/8
+Batch 6000 | LR 2.202371e-04 | Loss 1.8738 | AccumStep 1/8
+Batch 6100 | LR 2.202042e-04 | Loss 1.6052 | AccumStep 5/8
+Batch 6200 | LR 2.201687e-04 | Loss 1.6206 | AccumStep 1/8
+Batch 6300 | LR 2.201359e-04 | Loss 1.6733 | AccumStep 5/8
+Batch 6400 | LR 2.201004e-04 | Loss 1.6818 | AccumStep 1/8
+Batch 6500 | LR 2.200677e-04 | Loss 1.6246 | AccumStep 5/8
+Batch 6600 | LR 2.200322e-04 | Loss 1.4441 | AccumStep 1/8
+Batch 6700 | LR 2.199995e-04 | Loss 1.6467 | AccumStep 5/8
+Batch 6800 | LR 2.199641e-04 | Loss 1.5892 | AccumStep 1/8
+Batch 6900 | LR 2.199314e-04 | Loss 1.6751 | AccumStep 5/8
+Batch 7000 | LR 2.198960e-04 | Loss 1.7617 | AccumStep 1/8
+Batch 7100 | LR 2.198633e-04 | Loss 1.8345 | AccumStep 5/8
+Batch 7200 | LR 2.198280e-04 | Loss 1.6675 | AccumStep 1/8
+Batch 7300 | LR 2.197954e-04 | Loss 1.7431 | AccumStep 5/8
+Batch 7400 | LR 2.197600e-04 | Loss 1.7170 | AccumStep 1/8
+Batch 7500 | LR 2.197274e-04 | Loss 1.6578 | AccumStep 5/8
+Batch 7600 | LR 2.196921e-04 | Loss 1.7422 | AccumStep 1/8
+Batch 7700 | LR 2.196596e-04 | Loss 1.6089 | AccumStep 5/8
+Batch 7800 | LR 2.196243e-04 | Loss 1.4926 | AccumStep 1/8
